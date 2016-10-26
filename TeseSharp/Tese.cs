@@ -5,7 +5,6 @@ using System.IO;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
-using System.Xml;
 using Kajabity.Tools.Java;
 
 namespace TeseSharp
