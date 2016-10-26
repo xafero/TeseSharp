@@ -15,3 +15,13 @@ using (var writer = File.OpenWrite("test.txt")) {
     tese.Serialize(adr, writer);
 }
 ```
+
+```
+# 01.09.2016 21:33:28
+.street=Main Road
+.number=21
+.postal=42
+.city.name=Berlin
+.city.state=UT
+.city.code=12345
+```
