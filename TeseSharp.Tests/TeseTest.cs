@@ -28,30 +28,30 @@ namespace TeseSharp.Tests
 		public void TestDeserialize()
 		{
 			Customer cus = tese.Deserialize<Customer>(Deflatten(txt1));
-			Assert.Equals(1, cus.Id);
-			Assert.Equals("Harry", cus.FirstName);
-			Assert.Equals("Johnson", cus.LastName);
-			Assert.Equals(123.89, cus.Money);
-			Assert.Equals(true, cus.Male);
-			Assert.Equals('m', cus.Sex);
-			Assert.Equals(42, cus.Houses);
-			Assert.Equals(13, cus.Pets);
-			Assert.Equals(97.5f, cus.Crazyness);
-			Assert.Equals((byte)7, cus.Bits);
-			Assert.Equals(BigInteger.One * 10, cus.Sleep);
-			Assert.Equals(decimal.One, cus.Awake);
-			Assert.Equals(4238249348L, cus.Birth.Ticks);
-			Assert.Equals(22, cus.Home.Number);
-			Assert.Equals(50023, cus.Home.Postal);
-			Assert.Equals("West Ohio Street", cus.Home.Street);
-			Assert.Equals(1, cus.Home.City.Code);
-			Assert.Equals("Ankeny", cus.Home.City.Name);
-			Assert.Equals(State.IA, cus.Home.City.State);			
+			Assert.AreEqual(1, cus.Id);
+			Assert.AreEqual("Harry", cus.FirstName);
+			Assert.AreEqual("Johnson", cus.LastName);
+			Assert.AreEqual(123.89, cus.Money);
+			Assert.AreEqual(true, cus.Male);
+			Assert.AreEqual('m', cus.Sex);
+			Assert.AreEqual(42, cus.Houses);
+			Assert.AreEqual(13, cus.Pets);
+			Assert.AreEqual(97.5f, cus.Crazyness);
+			Assert.AreEqual((byte)7, cus.Bits);
+			Assert.AreEqual(BigInteger.One * 10, cus.Sleep);
+			Assert.AreEqual(decimal.One, cus.Awake);			
+			Assert.AreEqual(4238249348L, (cus.Birth.Ticks - 621355968000000000L) / 10000);
+			Assert.AreEqual(22, cus.Home.Number);
+			Assert.AreEqual(50023, cus.Home.Postal);
+			Assert.AreEqual("West Ohio Street", cus.Home.Street);
+			Assert.AreEqual(1, cus.Home.City.Code);
+			Assert.AreEqual("Ankeny", cus.Home.City.Name);
+			Assert.AreEqual(State.IA, cus.Home.City.State);			
 		}
 
 		private String Deflatten(string txt)
 		{
-			string nl = string.Format("%n");
+			string nl = Environment.NewLine;
 			txt = txt.Replace(" ~ ", nl);
 			return txt;
 		}
@@ -68,7 +68,7 @@ namespace TeseSharp.Tests
 
 		private String Flatten(string txt)
 		{
-			string nl = string.Format("%n");
+			string nl = Environment.NewLine;
 			txt = txt.Split(new[] { nl }, 2, StringSplitOptions.None)[1].Trim();
 			txt = txt.Replace(nl, " ~ ");
 			return txt;

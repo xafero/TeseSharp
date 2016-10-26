@@ -31,7 +31,11 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kajabity.Tools">
+      <HintPath>..\packages\Kajabity.Tools.0.4.5928.1510\lib\net40\Kajabity.Tools.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tese.cs" />
@@ -39,6 +43,9 @@
     <Compile Include="TeseBuilder.cs" />
     <Compile Include="TeseReadException.cs" />
     <Compile Include="TeseWriteException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
