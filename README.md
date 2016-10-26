@@ -16,6 +16,7 @@ using (var writer = File.OpenWrite("test.txt")) {
 }
 ```
 
+## Example output
 ```
 # 01.09.2016 21:33:28
 .street=Main Road
