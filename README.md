@@ -28,4 +28,4 @@ using (var writer = File.OpenWrite("test.txt")) {
 ```
 
 ## Example loading
-![Image of Debugger](doc/debugging.png)
+![Image of Debugger](https://raw.githubusercontent.com/xafero/TeseSharp/master/doc/debugging.PNG)
