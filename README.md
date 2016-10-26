@@ -14,6 +14,10 @@ var tese = new Tese();
 using (var writer = File.OpenWrite("test.txt")) {
     tese.Serialize(adr, writer);
 }
+
+using (var reader = File.OpenRead("test.txt")) {
+    adr = tese.Deserialize<Address>(reader);
+}
 ```
 
 ## Example storing
