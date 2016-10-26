@@ -5,6 +5,7 @@ using System.IO;
 using System.Numerics;
 using System.Reflection;
 using System.Text;
+using System.Xml;
 using Kajabity.Tools.Java;
 
 namespace TeseSharp
@@ -15,7 +16,8 @@ namespace TeseSharp
 		
 		public T Deserialize<T>(string text)
 		{
-			using (MemoryStream mem = new MemoryStream(Encoding.UTF8.GetBytes(text))) {
+			byte[] bytes = Encoding.UTF8.GetBytes(text);
+			using (MemoryStream mem = new MemoryStream(bytes)) {
 				return Deserialize<T>(mem);
 			}
 		}
@@ -110,12 +112,12 @@ namespace TeseSharp
 
 		public string Serialize(object obj)
 		{
+			byte[] bytes;
 			using (MemoryStream mem = new MemoryStream()) {
-				using (StreamReader writer = new StreamReader(mem)) {
-					Serialize(obj, mem);
-					return writer.ToString();
-				} 
+				Serialize(obj, mem);
+				bytes = mem.ToArray();
 			}
+			return Encoding.UTF8.GetString(bytes);
 		}
 		
 		public void Serialize(object obj, Stream writer)
@@ -157,7 +159,27 @@ namespace TeseSharp
 		private string ToStr(object value, FieldInfo field)
 		{
 			Type type = field.FieldType;
+			if (type.IsEnum)
+				return value.ToString();
+			CultureInfo cult = CultureInfo.InvariantCulture;
 			switch (type.Name) {
+				case "DateTime":
+					return ((DateTime)value).ToString("yyyy-MM-dd'T'HH:mm:ss.fffzzz");
+				case "Single":
+					return ((float)value).ToString(cult);
+				case "Double":
+					return ((double)value).ToString(cult);
+				case "Decimal":
+					return ((decimal)value).ToString(cult);
+				case "Boolean":
+				case "BigInteger":					
+				case "Int64":
+				case "Char":
+				case "Int32":
+				case "Byte":
+				case "Int16":					
+				case "String":
+					return value.ToString();
 				default:
 					throw new InvalidOperationException(type + " is not supported!");
 			}
