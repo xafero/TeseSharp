@@ -12,6 +12,8 @@ namespace TeseSharp
 			return this;
 		}
 
+		public bool IsSkipNull { get { return skipNull; } }
+
 		public Tese Create()
 		{
 			return new Tese();

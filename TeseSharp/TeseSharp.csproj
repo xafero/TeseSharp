@@ -37,6 +37,8 @@
     <Compile Include="Tese.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TeseBuilder.cs" />
+    <Compile Include="TeseReadException.cs" />
+    <Compile Include="TeseWriteException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
